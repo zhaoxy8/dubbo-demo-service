@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: jenkins
+  namespace: infra
+spec:
+  ports:
+  - name: web
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: agent
+    port: 50000
+    targetPort: 50000
+    protocol: TCP
+  selector:
+    app: jenkins

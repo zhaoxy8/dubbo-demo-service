@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: jenkins
+  name: jenkins
+  namespace: infra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: jenkins
+  template:
+    metadata:
+      labels:
+        run: jenkins
+    spec:
+      volumes:
+      - name: docker
+        hostPath:
+          path: /run/docker.sock
+          type: ''
+      - name: data
+        persistentVolumeClaim:
+          claimName: jenkins-pv
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/infra-xyzhao/jenkins:2.222.3
+        name: jenkins
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+        - name: JAVA_OPTS
+          value: -Xmx256m -Xms256m
+        volumeMounts:
+        - name: data
+          mountPath: /var/jenkins_home
+        - name: docker
+          mountPath: /run/docker.sock
+      imagePullSecrets:
+      - name: ali-secret
+      securityContext:
+        runAsUser: 0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  revisionHistoryLimit: 7
+  progressDeadlineSeconds: 600
