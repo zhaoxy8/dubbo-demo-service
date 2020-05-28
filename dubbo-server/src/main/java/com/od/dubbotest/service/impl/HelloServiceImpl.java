@@ -8,7 +8,8 @@ import com.od.dubbotest.api.HelloService;
 public class HelloServiceImpl implements HelloService {
 
 	public String hello(String name) {
+                String a = "hello";
 		System.out.println("HelloService接收到消息:"+name);
-		return "hello " + name;
+		return "hello " + a + name;
 	}
 }

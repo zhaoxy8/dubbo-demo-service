@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: dubbo-demo-service
-        image: registry.cn-hangzhou.aliyuncs.com/infra-xyzhao/dubbo-demo-service:master_20200504_1855
+        image: registry.cn-hangzhou.aliyuncs.com/infra-xyzhao/dubbo-demo-service:master_20200525_1546
         ports:
         - containerPort: 20880
           protocol: TCP
