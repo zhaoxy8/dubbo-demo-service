@@ -9,9 +9,6 @@ Software architecture description
 **测试**
 #### Installation
 #### 添加apollo分支
-1. xxxx
-2. xxxx
-3. xxxx
 
 #### Instructions
 
