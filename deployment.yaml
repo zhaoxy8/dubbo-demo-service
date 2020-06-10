@@ -29,7 +29,7 @@ spec:
           value: dubbo-server.jar
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: ali-secert
+      - name: ali-secret
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       securityContext: 
